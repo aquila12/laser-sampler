@@ -5,7 +5,6 @@ const int trigger_button = 14;
 const int pwm_signal = 15;
 const int laser_current = A0;
 
-const unsigned long sample_period_us = 100; // 10kHz
 const unsigned long period_size_us = 10000; // 100 Hz
 const int n_periods = 3000;                 // 30s
 
@@ -31,7 +30,6 @@ void wait_trigger() {
 
 void sample() {
   unsigned long t0 = micros();
-  unsigned long t_sample = t0 + sample_period_us;
   unsigned long t_period = t0 + period_size_us;
   unsigned long n_pwm, n_on;
   unsigned long n_current, sum_current;
@@ -45,7 +43,7 @@ void sample() {
     while(micros() < t_period) {
       analogReadAsync(laser_current);
 
-      while(micros() < t_sample) {
+      while(!getAnalogReadComplete(false)) {
         n_on += (*portInputRegister(in_port) & in_bit);
         n_on += (*portInputRegister(in_port) & in_bit);
         n_on += (*portInputRegister(in_port) & in_bit);
@@ -59,7 +57,6 @@ void sample() {
 
         n_pwm += 10;
       };
-      t_sample += sample_period_us;
 
       ++n_current;
       sum_current += getAnalogReadValue();
