@@ -3,6 +3,8 @@
 set datafile separator ','
 
 set ytics nomirror
+unset y2tics
+unset y2label
 
 set xlabel "PWM %" 
 set ylabel "Laser Current mA" 
