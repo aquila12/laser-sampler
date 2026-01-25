@@ -36,6 +36,9 @@ void sample() {
   unsigned long n_pwm, n_on;
   unsigned long n_current, sum_current;
 
+  const uint8_t in_bit = digitalPinToBitMask(pwm_signal);
+  const uint8_t in_port = digitalPinToPort(pwm_signal);
+
   for(int i = 0; i < n_periods; ++i) {
     n_pwm = n_on = n_current = sum_current = 0;
 
@@ -43,8 +46,18 @@ void sample() {
       analogReadAsync(laser_current);
 
       while(micros() < t_sample) {
-        ++n_pwm;
-        n_on += digitalRead(pwm_signal);
+        n_on += (*portInputRegister(in_port) & in_bit);
+        n_on += (*portInputRegister(in_port) & in_bit);
+        n_on += (*portInputRegister(in_port) & in_bit);
+        n_on += (*portInputRegister(in_port) & in_bit);
+        n_on += (*portInputRegister(in_port) & in_bit);
+        n_on += (*portInputRegister(in_port) & in_bit);
+        n_on += (*portInputRegister(in_port) & in_bit);
+        n_on += (*portInputRegister(in_port) & in_bit);
+        n_on += (*portInputRegister(in_port) & in_bit);
+        n_on += (*portInputRegister(in_port) & in_bit);
+
+        n_pwm += 10;
       };
       t_sample += sample_period_us;
 
@@ -55,7 +68,7 @@ void sample() {
 
     Serial.print(i);
     Serial.print(',');
-    Serial.print(n_on);
+    Serial.print(n_on / in_bit);
     Serial.print(',');
     Serial.print(n_pwm);
     Serial.print(',');
