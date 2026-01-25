@@ -1,0 +1,17 @@
+#!/bin/sh
+# Plot a raw capture
+
+TMPFILE="$(mktemp)"
+fgrep ',' "$1" > "$TMPFILE"
+
+# gnuplot -p -e "csvfile='${TMPFILE}'" plotter.gp
+# gnuplot -p -e "csvfile='${TMPFILE}'" plotterxy.gp
+
+gnuplot -p \
+  -e "set term qt position 0,0 size 1900,950 title 'Laser capture: ${1}'" \
+  -e "csvfile='${TMPFILE}'" \
+  -e "set multiplot layout 1,2" \
+  plotter.gp plotterxy.gp \
+  -e "unset multiplot"
+
+rm "$TMPFILE"
