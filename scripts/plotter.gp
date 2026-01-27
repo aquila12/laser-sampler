@@ -28,4 +28,4 @@ set key right center # legend placement
 # Format is time, n_on, n_pwm, sum_current, n_current
 plot \
   csvfile using ($1 / 100):(100 * $2 /$3) title "PWM" with lines ls 101, \
-  csvfile using ($1 / 100):(48.1 / 1023 * $4 / $5) title "Laser Current" with lines axis x1y2 ls 102
+  csvfile using ($1 / 100):(25.75 / 1023 * $4 / $5) title "Laser Current" with lines axis x1y2 ls 102

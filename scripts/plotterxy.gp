@@ -22,4 +22,4 @@ set xtics rotate # rotate labels on the x axis
 
 # Format is time, n_on, n_pwm, sum_current, n_current
 plot \
-  csvfile using (100 * $2 /$3):(48.1 / 1023 * $4 / $5) with points pointtype 1 notitle
+  csvfile using (100 * $2 /$3):(25.75 / 1023 * $4 / $5) with points pointtype 1 notitle
