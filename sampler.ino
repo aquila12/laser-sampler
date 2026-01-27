@@ -23,8 +23,8 @@ void loop() {
 
 void wait_trigger() {
   Serial.print("Waiting for trigger...");
-  while(digitalRead(trigger_button) == HIGH) delay(100); // Wait for push
-  while(digitalRead(trigger_button) == LOW) delay(100);; // Wait for release
+  while(digitalRead(trigger_button) == HIGH) delay(10); // Wait for push
+  while(digitalRead(trigger_button) == LOW) delay(10); // Wait for release
   Serial.println("GO!");
 }
 
