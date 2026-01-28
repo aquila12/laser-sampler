@@ -8,22 +8,24 @@ set xlabel 'Time s'
 set ylabel "PWM %" 
 set y2label "Laser Current mA" 
 
+set bmargin 5
+
 set style line 100 lt 1 lc rgb "grey" lw 0.5 
 set grid ls 100
 
 set yrange [0:100]
 set y2range [0:25]
 
-set xtics 5
-set ytics 20
-set y2tics 5
+set xtics 2
+set ytics 10
+set y2tics 2.5
 
 set style line 101 lw 1 lt rgb "#f62aa0" 
 set style line 102 lw 1 lt rgb "#26dfd0" 
 # set style line 103 lw 4 lt rgb "#b8ee30" 
 
 set xtics rotate # rotate labels on the x axis
-set key right center # legend placement
+set key right bottom # legend placement
 
 # Format is time, n_on, n_pwm, sum_current, n_current
 plot \

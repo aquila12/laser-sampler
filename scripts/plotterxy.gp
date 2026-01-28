@@ -15,8 +15,8 @@ set grid ls 100
 set xrange [0:100]
 set yrange [0:25]
 
-set xtics 20
-set ytics 5
+set xtics 10
+set ytics 2.5
 
 set xtics rotate # rotate labels on the x axis
 
