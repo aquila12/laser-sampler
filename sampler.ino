@@ -6,7 +6,7 @@ const int pwm_signal = 15;
 const int laser_current = A0;
 
 const unsigned long period_size_us = 10000; // 100 Hz
-const int n_periods = 3000;                 // 30s
+const int n_periods = 6000;                 // 60s
 
 void setup() {
   Serial.begin(1000000);  // Pro micro (Leonardo) doesn't actually care
